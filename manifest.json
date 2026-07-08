@@ -1,0 +1,16 @@
+{
+  "name": "TRK Gift League",
+  "short_name": "TRK League",
+  "start_url": "./index.html",
+  "display": "fullscreen",
+  "background_color": "#111111",
+  "theme_color": "#111111",
+  "orientation": "landscape",
+  "icons": [
+    {
+      "src": "assets/icon.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

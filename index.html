@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width,initial-scale=1.0,user-scalable=no">
+
+<title>TRK Gift League V3</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="manifest" href="manifest.json">
+</head>
+
+<body>
+
+<!-- ========================= -->
+<!-- Splash -->
+<!-- ========================= -->
+
+<div id="splashScreen">
+
+<img src="assets/icon.png" id="logo">
+
+<h1>TRK Gift League</h1>
+
+<p>Loading...</p>
+
+</div>
+
+<!-- ========================= -->
+<!-- Main Menu -->
+<!-- ========================= -->
+
+<div id="mainMenu">
+
+<h1>🏆 TRK Gift League</h1>
+
+<button id="startGame" class="menuBtn">
+▶ Start Game
+</button>
+
+<button id="countryBtn" class="menuBtn">
+🌍 Select Country
+</button>
+
+<button id="leaderboardBtn" class="menuBtn">
+🏆 Leaderboard
+</button>
+
+<button id="settingsBtn" class="menuBtn">
+⚙ Settings
+</button>
+
+<button id="howBtn" class="menuBtn">
+❓ How To Play
+</button>
+
+<button id="connectBtn" class="menuBtn">
+📺 Connect TikTok LIVE
+</button>
+
+<button id="exitBtn" class="menuBtn">
+🚪 Exit
+</button>
+
+</div>
+
+<!-- ========================= -->
+<!-- Settings -->
+<!-- ========================= -->
+
+<div id="settingsMenu">
+
+<h2>⚙ Settings</h2>
+
+<div class="settingItem">
+🔊 Sound
+<input type="checkbox"
+id="soundToggle"
+checked>
+</div>
+
+<div class="settingItem">
+🎵 Music
+<input type="checkbox"
+id="musicToggle"
+checked>
+</div>
+
+<div class="settingItem">
+🏃 Road Speed
+<input type="range"
+id="roadSpeed"
+min="1"
+max="5"
+value="2">
+</div>
+
+<div class="settingItem">
+
+<label>🔉 Volume</label>
+
+<input
+type="range"
+id="volumeSlider"
+min="0"
+max="100"
+value="50">
+
+</div>
+
+<button id="closeSettings"
+class="menuBtn">
+
+⬅ Back
+
+</button>
+
+</div>
+
+<!-- ========================= -->
+<!-- Country -->
+<!-- ========================= -->
+
+<div id="countryMenu">
+
+<h2>Select Country</h2>
+
+<div id="countryList"></div>
+
+<button id="closeCountry"
+class="menuBtn">
+
+⬅ Back
+
+</button>
+
+</div>
+
+<!-- ========================= -->
+<!-- Top 3 -->
+<!-- ========================= -->
+
+<div class="topBar">
+
+<div class="team">
+
+<div id="firstFlag">🥇</div>
+
+<div id="firstScore">0</div>
+
+</div>
+
+<div class="team">
+
+<div id="secondFlag">🥈</div>
+
+<div id="secondScore">0</div>
+
+</div>
+
+<div class="team">
+
+<div id="thirdFlag">🥉</div>
+
+<div id="thirdScore">0</div>
+
+</div>
+
+</div>
+
+<!-- ========================= -->
+<!-- Stadium -->
+<!-- ========================= -->
+
+<div id="stadium"></div>
+
+<!-- ========================= -->
+<!-- Gift Alert -->
+<!-- ========================= -->
+
+<div id="giftAlert"></div>
+
+<!-- ========================= -->
+<!-- TikTok Comments -->
+<!-- ========================= -->
+
+<div id="commentBox"></div>
+
+<!-- ========================= -->
+<!-- Gift History -->
+<!-- ========================= -->
+
+<div id="giftHistory"></div>
+
+<!-- ========================= -->
+<!-- Winner -->
+<!-- ========================= -->
+
+<div id="winnerScreen">
+
+<div id="winnerFlag"></div>
+
+<h1 id="winnerName"></h1>
+
+<p id="winnerText">
+
+Champion
+
+</p>
+
+<button id="playAgain"
+class="menuBtn">
+
+🔄 Play Again
+
+</button>
+
+<button id="backMenu"
+class="menuBtn">
+
+🏠 Main Menu
+
+</button>
+
+</div>
+
+<!-- ========================= -->
+<!-- Controls -->
+<!-- ========================= -->
+
+<button id="pauseBtn">
+
+⏸
+
+</button>
+
+<button id="restartBtn">
+
+🔄
+
+</button>
+
+<button id="gameSettingsBtn">
+⚙️
+</button>
+<!-- ========================= -->
+<!-- YouTube -->
+<!-- ========================= -->
+
+<div class="youtubeBar">
+
+<marquee>
+
+📺 YouTube :
+@bhawalpuri1122
+
+</marquee>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+
+</html>

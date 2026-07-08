@@ -1,0 +1,1081 @@
+/* =========================
+TRK Gift League V3
+PART 1
+========================= */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html,
+body{
+
+width:100%;
+height:100%;
+
+overflow:hidden;
+
+background:#111;
+
+font-family:Arial,sans-serif;
+
+color:#fff;
+
+}
+
+/* =========================
+SPLASH
+========================= */
+
+#splashScreen{
+
+position:fixed;
+
+left:0;
+top:0;
+
+width:100%;
+height:100%;
+
+background:#111;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:50000;
+
+}
+
+#logo{
+
+width:140px;
+
+margin-bottom:20px;
+
+}
+
+#splashScreen h1{
+
+font-size:36px;
+
+color:gold;
+
+margin-bottom:10px;
+
+}
+
+#splashScreen p{
+
+font-size:20px;
+
+color:#ddd;
+
+}
+
+/* =========================
+MAIN MENU
+========================= */
+
+#mainMenu{
+
+position:fixed;
+
+left:0;
+top:0;
+
+width:100%;
+height:100%;
+
+background:#111;
+
+display:none;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:40000;
+
+}
+
+#mainMenu h1{
+
+font-size:34px;
+
+margin-bottom:35px;
+
+color:gold;
+
+}
+
+/* =========================
+BUTTONS
+========================= */
+
+.menuBtn{
+
+width:270px;
+
+padding:14px;
+
+margin:8px;
+
+font-size:22px;
+
+font-weight:bold;
+
+background:#222;
+
+color:white;
+
+border:2px solid gold;
+
+border-radius:12px;
+
+cursor:pointer;
+
+transition:.25s;
+
+}
+
+.menuBtn:hover{
+
+background:gold;
+
+color:black;
+
+transform:scale(1.05);
+
+}
+
+/* =========================
+SETTINGS
+========================= */
+
+#settingsMenu{
+
+position:fixed;
+
+left:0;
+top:0;
+
+width:100%;
+height:100%;
+
+background:#111;
+
+display:none;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:39000;
+
+}
+
+#settingsMenu h2{
+
+font-size:32px;
+
+margin-bottom:25px;
+
+color:gold;
+
+}
+
+.settingItem{
+
+width:280px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+margin:12px 0;
+
+font-size:20px;
+
+}
+
+/* =========================
+COUNTRY MENU
+========================= */
+
+#countryMenu{
+
+position:fixed;
+
+left:0;
+top:0;
+
+width:100%;
+height:100%;
+
+background:#111;
+
+display:none;
+
+flex-direction:column;
+
+align-items:center;
+
+overflow-y:auto;
+
+padding:20px;
+
+z-index:38000;
+
+}
+
+#countryMenu h2{
+
+font-size:30px;
+
+color:gold;
+
+margin-bottom:20px;
+
+}
+
+#countryList{
+
+width:100%;
+
+max-width:420px;
+
+}
+/* =========================
+STADIUM
+========================= */
+
+.topBar{
+
+height:65px;
+
+display:flex;
+
+justify-content:space-around;
+
+align-items:center;
+
+background:#1b1b1b;
+
+border-bottom:2px solid gold;
+
+}
+
+.team{
+
+width:32%;
+
+text-align:center;
+
+background:#222;
+
+padding:5px;
+
+border-radius:10px;
+
+border:2px solid gold;
+
+}
+
+.team div:first-child{
+
+font-size:20px;
+
+}
+
+.team div:last-child{
+
+font-size:22px;
+
+color:#00ff66;
+
+font-weight:bold;
+
+}
+
+/* =========================
+GAME AREA
+========================= */
+
+#stadium{
+
+position:absolute;
+
+top:65px;
+
+left:0;
+
+width:100%;
+
+height:calc(100vh - 105px);
+
+overflow:hidden;
+
+background:#202020;
+
+padding:2px;
+
+}
+
+/* =========================
+LANE
+========================= */
+
+.lane{
+
+position:relative;
+
+width:100%;
+
+height:28px;
+
+margin:1px 0;
+
+}
+
+/* =========================
+FLAG
+========================= */
+
+.flagIcon{
+
+position:absolute;
+
+left:2px;
+
+top:2px;
+
+width:34px;
+
+font-size:20px;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+}
+
+/* =========================
+ROAD
+========================= */
+
+.road{
+position:absolute;
+
+left:36px;      /* فلیگ کے بعد فوراً شروع */
+right:26px;     /* گول کے بالکل قریب ختم */
+
+top:0px;        /* اوپر لے آئیں */
+
+height:28px;    /* لین جتنی اونچائی */
+
+overflow:hidden;
+
+z-index:1;
+}
+
+.road img{
+width:200%;
+height:100%;
+display:block;
+object-fit:cover;
+animation:roadMove 2s linear infinite;
+}
+
+@keyframes roadMove{
+0%{
+transform:translateX(0);
+}
+100%{
+transform:translateX(-50%);
+}
+}
+
+/* =========================
+PLAYER
+========================= */
+
+.player{
+position:absolute;
+left:42px;
+top:-14px;
+width:60px;
+height:60px;
+z-index:10;
+animation:run .25s linear infinite;
+}
+
+.player img{
+width:100%;
+height:100%;
+object-fit:contain;
+}
+
+/* =========================
+BALL
+========================= */
+
+.ball{
+position:absolute;
+width:22px;
+height:22px;
+}
+
+.ball img{
+width:22px;
+height:22px;
+object-fit:contain;
+display:block;
+animation:spinBall 2s linear infinite;
+}
+
+@keyframes spinBall{
+
+from{
+
+transform:rotate(0deg);
+
+}
+
+to{
+
+transform:rotate(360deg);
+
+}
+
+}
+
+/* =========================
+GOAL
+========================= */
+
+.goal{
+position:absolute;
+right:0px;
+top:0px;
+width:40px;
+height:40px;
+}
+
+.goal img{
+
+width:100%;
+
+height:100%;
+
+}
+
+/* =========================
+CROWN
+========================= */
+
+.crown{
+
+position:absolute;
+
+top:-12px;
+
+left:5px;
+
+font-size:12px;
+
+display:none;
+
+z-index:20;
+
+}
+
+@keyframes run{
+
+0%{
+
+transform:translateY(0);
+
+}
+
+50%{
+
+transform:translateY(-2px);
+
+}
+
+100%{
+
+transform:translateY(0);
+
+}
+
+}
+/* =========================
+GIFT ALERT
+========================= */
+
+#giftAlert{
+
+position:fixed;
+
+top:80px;
+
+left:50%;
+
+transform:translateX(-50%);
+
+padding:10px 20px;
+
+background:rgba(0,0,0,.75);
+
+border:2px solid gold;
+
+border-radius:12px;
+
+font-size:20px;
+
+font-weight:bold;
+
+display:none;
+
+z-index:5000;
+
+color:#fff;
+
+}
+
+/* =========================
+LIVE COMMENTS
+========================= */
+
+#commentBox{
+
+position:fixed;
+
+left:10px;
+
+bottom:55px;
+
+width:300px;
+
+display:flex;
+
+flex-direction:column-reverse;
+
+gap:6px;
+
+z-index:4500;
+
+}
+
+.comment{
+
+background:rgba(0,0,0,.75);
+
+padding:8px 12px;
+
+border-radius:12px;
+
+font-size:16px;
+
+color:#fff;
+
+animation:commentIn .3s ease;
+
+}
+
+@keyframes commentIn{
+
+from{
+
+opacity:0;
+
+transform:translateX(-30px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateX(0);
+
+}
+
+}
+
+/* =========================
+WINNER SCREEN
+========================= */
+
+#winnerScreen{
+
+position:fixed;
+
+left:0;
+
+top:0;
+
+width:100%;
+
+height:100%;
+
+background:rgba(0,0,0,.92);
+
+display:none;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:6000;
+
+}
+
+#winnerFlag{
+
+font-size:70px;
+
+margin-bottom:15px;
+
+}
+
+#winnerName{
+
+font-size:36px;
+
+color:gold;
+
+margin-bottom:12px;
+
+}
+
+#winnerText{
+
+font-size:24px;
+
+margin-bottom:25px;
+
+}
+
+/* =========================
+CONTROL BUTTONS
+========================= */
+
+#pauseBtn,
+#restartBtn{
+
+position:fixed;
+
+right:10px;
+
+width:48px;
+
+height:48px;
+
+border:none;
+
+border-radius:50%;
+
+font-size:22px;
+
+background:#222;
+
+color:#fff;
+
+z-index:5000;
+
+}
+
+#pauseBtn{
+
+bottom:120px;
+
+}
+
+#restartBtn{
+
+bottom:60px;
+
+}
+
+/* =========================
+YOUTUBE BAR
+========================= */
+
+.youtubeBar{
+
+position:fixed;
+
+left:0;
+
+bottom:0;
+
+width:100%;
+
+height:35px;
+
+line-height:35px;
+
+background:#c40000;
+
+color:#fff;
+
+font-weight:bold;
+
+z-index:3000;
+
+}
+
+/* =========================
+GOAL EFFECT
+========================= */
+
+.goal.glow{
+
+filter:drop-shadow(0 0 12px gold);
+
+transform:scale(1.2);
+
+transition:.3s;
+
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:480px){
+
+.menuBtn{
+
+width:240px;
+
+font-size:18px;
+
+}
+
+#commentBox{
+
+width:260px;
+
+}
+
+}
+/* =========================
+LEADERBOARD
+========================= */
+
+#leaderboardMenu{
+
+position:fixed;
+
+left:0;
+top:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,.95);
+
+display:none;
+
+flex-direction:column;
+
+align-items:center;
+
+padding-top:40px;
+
+z-index:37000;
+
+}
+
+#leaderboardMenu h2{
+
+font-size:32px;
+
+color:gold;
+
+margin-bottom:20px;
+
+}
+
+#leaderboardList{
+
+width:90%;
+
+max-width:420px;
+
+}
+
+.rankItem{
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+padding:10px;
+
+margin:6px 0;
+
+background:#222;
+
+border:2px solid #444;
+
+border-radius:10px;
+
+font-size:20px;
+
+}
+
+/* =========================
+HOW TO PLAY
+========================= */
+
+#howMenu{
+
+position:fixed;
+
+left:0;
+top:0;
+
+width:100%;
+height:100%;
+
+background:#111;
+
+display:none;
+
+flex-direction:column;
+
+padding:25px;
+
+z-index:36000;
+
+overflow-y:auto;
+
+}
+
+#howMenu h2{
+
+color:gold;
+
+margin-bottom:20px;
+
+}
+
+#howMenu p{
+
+font-size:18px;
+
+line-height:1.7;
+
+margin-bottom:12px;
+
+}
+
+/* =========================
+TIKTOK CONNECT
+========================= */
+
+#connectMenu{
+
+position:fixed;
+
+left:0;
+top:0;
+
+width:100%;
+height:100%;
+
+background:#111;
+
+display:none;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+z-index:35000;
+
+}
+
+#connectMenu h2{
+
+color:#00e5ff;
+
+margin-bottom:25px;
+
+font-size:30px;
+
+}
+
+/* =========================
+CONFETTI
+========================= */
+
+.confetti{
+
+position:fixed;
+
+width:10px;
+
+height:10px;
+
+background:gold;
+
+top:-20px;
+
+animation:confettiFall 4s linear forwards;
+
+z-index:6500;
+
+}
+
+@keyframes confettiFall{
+
+0%{
+
+transform:translateY(0) rotate(0deg);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:translateY(120vh) rotate(720deg);
+
+opacity:0;
+
+}
+
+}
+
+/* =========================
+FIREWORK
+========================= */
+
+.firework{
+
+position:fixed;
+
+width:12px;
+
+height:12px;
+
+border-radius:50%;
+
+background:#ff0;
+
+animation:firework .8s ease-out forwards;
+
+z-index:6500;
+
+}
+
+@keyframes firework{
+
+0%{
+
+transform:scale(.2);
+
+opacity:1;
+
+}
+
+100%{
+
+transform:scale(8);
+
+opacity:0;
+
+}
+
+}
+
+/* =========================
+COUNTRY SELECTED
+========================= */
+
+.countrySelected{
+
+border:3px solid gold !important;
+
+box-shadow:0 0 15px gold;
+
+transform:scale(1.03);
+
+}
+
+/* =========================
+LOADING ANIMATION
+========================= */
+
+.loadingDots::after{
+
+content:"";
+
+animation:dots 1.5s infinite;
+
+}
+
+@keyframes dots{
+
+0%{content:"";}
+
+25%{content:".";}
+
+50%{content:"..";}
+
+75%{content:"...";}
+
+100%{content:"";}
+
+}
+#gameSettingsBtn{
+
+position:fixed;
+
+right:10px;
+
+bottom:180px;
+
+width:48px;
+
+height:48px;
+
+border:none;
+
+border-radius:50%;
+
+font-size:22px;
+
+background:#222;
+
+color:#fff;
+
+z-index:5000;
+
+}
