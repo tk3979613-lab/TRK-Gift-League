@@ -1079,3 +1079,53 @@ color:#fff;
 z-index:5000;
 
 }
+
+/* ===== Gift Orb ===== */
+
+#giftOrb{
+position:fixed;
+width:22px;
+height:22px;
+border-radius:50%;
+display:none;
+z-index:99999;
+
+background:#00ffff;
+transform: translateY(-50%);
+box-shadow:
+0 0 10px #00ffff,
+0 0 20px #00ffff,
+0 0 35px white;
+
+transition:
+left .45s linear,
+top .45s linear;
+}
+
+.playerFlash{
+
+animation:playerFlash .4s;
+
+}
+
+@keyframes playerFlash{
+
+0%{
+
+filter:brightness(1);
+
+}
+
+50%{
+
+filter:brightness(3);
+
+}
+
+100%{
+
+filter:brightness(1);
+
+}
+
+}

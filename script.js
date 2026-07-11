@@ -2,20 +2,14 @@
    TRK Gift League V3
    Part 1-A
 ===================================*/
-// Sounds
-
-// Background Music
-
-const bgMusic = new Audio("sounds/stadium.mp3");
+const bgMusic = new Audio("stadium.mp3");
 
 bgMusic.loop = true;
+bgMusic.volume = 0.5;
 
-bgMusic.volume = 0.5;   // شروع میں 50%
-
-const goalSound = new Audio("sounds/goal.mp3");
-const giftSound = new Audio("sounds/gift.mp3");
-giftSound.volume = 1.0;
-const winnerSound = new Audio("sounds/winner.mp3");
+const goalSound = new Audio("goal.mp3");
+const giftSound = new Audio("gift.mp3");
+const winnerSound = new Audio("winner.mp3");
 
 // Game Settings
 
@@ -44,11 +38,8 @@ Lion:100
 const countries=[
 
 {flag:"🇵🇰",name:"Pakistan",score:0},
-
 {flag:"🇸🇦",name:"Saudi Arabia",score:0},
-
 {flag:"🇦🇫",name:"Afghanistan",score:0},
-
 {flag:"🇶🇦",name:"Qatar",score:0},
 
 {flag:"🇦🇪",name:"UAE",score:0},
@@ -86,6 +77,12 @@ const countries=[
 {flag:"🇧🇷",name:"Brazil",score:0}
 
 ];
+
+// Viewer Country Data
+let viewerCountries = {};
+
+// Current Viewer
+let currentViewer = "";
 
 // Stadium
 
@@ -126,7 +123,7 @@ ${country.flag}
 
 <div class="road">
 
-<img src="assets/road.png">
+<img src="road.png">
 
 </div>
 
@@ -138,19 +135,19 @@ ${country.flag}
 
 <img
 class="playerImg"
-src="assets/player1.png">
+src="player1.png">
 
 </div>
 
 <div class="ball" id="ball${index}">
 
-<img src="assets/football.png">
+<img src="football.png">
 
 </div>
 
 <div class="goal" id="goal${index}">
 
-<img src="assets/goal.png">
+<img src="goal.png">
 
 </div>
 
@@ -212,12 +209,10 @@ roadSpeed+"s";
 
 function movePlayer(index){
 
-let move=countries[index].score*2.2;
+let move = (countries[index].score / 5000) * 520;
 
-if(move>520){
-
-move=520;
-
+if(move > 520){
+    move = 520;
 }
 
 playerPosition[index]=move;
@@ -234,6 +229,10 @@ function addGift(index,points){
 
 if(gamePaused) return;
 
+showGiftBeam(index);
+
+setTimeout(()=>{
+
 giftSound.currentTime=0;
 
 giftSound.play();
@@ -247,6 +246,8 @@ updateTop3();
 updateCrowns();
 
 checkWinner(index);
+
+},500);
 
 }
 /* ===================================
@@ -310,7 +311,7 @@ document.getElementById("crown"+leader).style.display="block";
 
 function checkWinner(index){
 
-if(countries[index].score>=200){
+if(countries[index].score>=5000){
 
 players[index].style.left="562px";
 
@@ -347,6 +348,38 @@ countries[index].flag;
 
 document.getElementById("winnerName").innerHTML=
 countries[index].name;
+
+}
+function showGiftBeam(index){
+
+const orb = document.getElementById("giftOrb");
+const player = players[index];
+const rect = player.getBoundingClientRect();
+
+orb.style.display = "block";
+
+// Player کی صحیح Screen Position
+orb.style.left = "20px";
+orb.style.top = (rect.top + rect.height/2 - 11) + "px";
+
+setTimeout(()=>{
+
+    orb.style.left = (rect.left + rect.width/2 - 11) + "px";
+    orb.style.top = (rect.top + rect.height/2 - 11) + "px";
+
+},20);
+
+setTimeout(()=>{
+
+    player.classList.add("playerFlash");
+
+    setTimeout(()=>{
+        player.classList.remove("playerFlash");
+    },300);
+
+    orb.style.display="none";
+
+},500);
 
 }
 /* ===================================
@@ -464,38 +497,12 @@ bgMusic.play();
 
 };
 
-// Play Again
 
-document.getElementById("playAgain").onclick=function(){
-
-location.reload();
-
-};
-
-// Back To Menu
-
-document.getElementById("backMenu").onclick=function(){
-
-location.reload();
-
-};
 
 // Pause
-
-document.getElementById("pauseBtn").onclick=function(){
-
-gamePaused=!gamePaused;
-
-this.innerHTML=gamePaused?"▶":"⏸";
-
-};
-
-// Restart
-
-document.getElementById("restartBtn").onclick=function(){
-
-location.reload();
-
+document.getElementById("pauseBtn").onclick = function () {
+    gamePaused = !gamePaused;
+    this.innerHTML = gamePaused ? "▶" : "⏸";
 };
 
 // Settings
@@ -608,14 +615,12 @@ alert(
 
 "❤️ Heart = +5\n"+
 
-"🌸 Perfume = +30\n"+
+"🌸 Perfume = +20\n"+
 
 "🪐 Galaxy = +50\n"+
 
 "🦁 Lion = +100\n\n"+
-
-"🏆 پہلے 200 پوائنٹس حاصل کرنے والا ملک جیت جائے گا۔"
-
+"🏆 پہلے 5000 پوائنٹس حاصل کرنے والا ملک جیت جائے گا۔"
 );
 
 };
@@ -1046,9 +1051,9 @@ saveGame();
 
 function checkWinner(index){
 
-if(countries[index].score>=200){
+if(countries[index].score>=5000){
 
-countries[index].score=200;
+countries[index].score=5000;
 
 movePlayer(index);
 
@@ -1201,7 +1206,13 @@ gameStarted=false;
 };
 
 }
+const restartBtn = document.getElementById("restartBtn");
 
+if (restartBtn) {
+    restartBtn.onclick = function () {
+        resetGame();
+    };
+}
 // Ready
 
 console.log("✅ Game Ready For TikTok LIVE");
